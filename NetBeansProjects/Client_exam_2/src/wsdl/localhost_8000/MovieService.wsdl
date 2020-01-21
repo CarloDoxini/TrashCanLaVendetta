@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://server_exam_2.federico.com/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="ExamImplService" targetNamespace="http://server_exam_2.federico.com/">
+  <wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://server_exam_2.federico.com/" elementFormDefault="unqualified" targetNamespace="http://server_exam_2.federico.com/" version="1.0">
+
+  <xs:element name="getMoviesInfo" type="tns:getMoviesInfo"/>
+
+  <xs:element name="getMoviesInfoResponse" type="tns:getMoviesInfoResponse"/>
+
+  <xs:complexType name="getMoviesInfo">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="getMoviesInfoResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="getMoviesInfoResponse">
+    <wsdl:part element="tns:getMoviesInfoResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getMoviesInfo">
+    <wsdl:part element="tns:getMoviesInfo" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="Exam">
+    <wsdl:operation name="getMoviesInfo">
+      <wsdl:input message="tns:getMoviesInfo" name="getMoviesInfo">
+    </wsdl:input>
+      <wsdl:output message="tns:getMoviesInfoResponse" name="getMoviesInfoResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ExamImplServiceSoapBinding" type="tns:Exam">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getMoviesInfo">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getMoviesInfo">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getMoviesInfoResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ExamImplService">
+    <wsdl:port binding="tns:ExamImplServiceSoapBinding" name="ExamImplPort">
+      <soap:address location="http://localhost:8000/MovieService"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
